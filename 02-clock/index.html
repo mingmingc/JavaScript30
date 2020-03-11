@@ -5,16 +5,13 @@
   <title>JS + CSS Clock</title>
 </head>
 <body>
-
-
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
-      </div>
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
     </div>
-
+  </div>
 
   <style>
     html {
@@ -35,9 +32,9 @@
     }
 
     .clock {
-      width: 30rem;
-      height: 30rem;
-      border: 20px solid white;
+      width: 50rem;
+      height: 50rem;
+      border: 10px solid white;
       border-radius: 50%;
       margin: 50px auto;
       position: relative;
@@ -58,8 +55,7 @@
 
     .hand {
       width: 50%;
-      height: 6px;
-      background: black;
+      background: white;
       position: absolute;
       top: 50%;
       transform-origin: 100%; /* default is 50%*/
@@ -68,14 +64,17 @@
       transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
-    .min-hand {
-      background: ;
+    .second-hand {
+      height: 3px;
+    }
+
+    .minute-hand {
+      height: 5px;
     }
 
     .hour-hand {
-      background: ;
+      height: 8px;
     }
-
 
   </style>
 
@@ -86,33 +85,25 @@
 
     function setDate() {
       const now = new Date(); //grab current date
-  
       const seconds = now.getSeconds();
-      const secondDegrees = ((seconds / 60) * 360) + 90;
-
       const mins = now.getMinutes();
-      const minDegrees = ((mins / 60) * 360) + 90 + (seconds * 0.1);
-
       const hours = now.getHours();
-      const hourDegrees = ((hours / 12) * 360) + 90 + (mins * 0.5);
 
-      //450 degrees
-      if (secondDegrees === 450) {
-        console.log("450!");
-        secondHand.style.transform = `none`;
-      } else if (minDegrees === 450) {
-        secondHand.style.transform = `none`;
-      } else if (hourDegrees === 450) {
-        hourHand.style.transform = `none`
-      } else {
-        secondHand.style.transform = `rotate(${secondDegrees}deg)`;
-        minHand.style.transform = `rotate(${minDegrees}deg)`;
-        hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-      }
+      const secondDegrees = getDegrees(seconds, 60);   
+      const minDegrees = getDegrees(mins, 60) + (seconds * 0.1);
+      const hourDegrees = getDegrees(hours, 12) + (mins * 0.5);
+
+      //rotate clock hands
+      secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+      minHand.style.transform = `rotate(${minDegrees}deg)`;
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    }
+
+    function getDegrees (time, max) {
+      return ((time/max) * 360) + 90;
     }
 
     setInterval(setDate, 1000);
-
   </script>
 </body>
 </html>
