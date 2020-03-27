@@ -12,20 +12,26 @@
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="0" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="base" type="color" name="base" value="#dfb11b">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <img src="https://images.unsplash.com/photo-1584942368913-b98dd9983c7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMDk0fQ&auto=format&fit=crop&w=1350&q=80">
 
   <style>
+
+    /* root element, similar to HTML 
+    defined with default variables*/
+
     :root {
-      --base: #ffc600;
+      --base: #dfb11b;
       --spacing: 10px;
-      --blur: 10px;
+      --blur: 0px;
     }
+
+    /* -- similar to $ in SaSS */
 
     img {
       padding: var(--spacing);
@@ -43,8 +49,8 @@
 
     body {
       text-align: center;
-      background: #193549;
-      color: white;
+      background: #c4ece6;
+      color: black;
       font-family: 'helvetica neue', sans-serif;
       font-weight: 100;
       font-size: 50px;
@@ -70,7 +76,6 @@
     inputs.forEach(input => input.addEventListener('change', handleUpdate));
     inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
-
 
 </body>
 </html>
